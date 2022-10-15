@@ -1,0 +1,58 @@
+parametro ELEM
+
+tipos 
+    elem
+
+especificación COLAS_DOBLES[ELEM]
+
+usa BOOLEANOS 
+
+tipos colaD 
+
+operaciones
+    colaD_vacia:                   ---> colaD 
+    encolarD_der:       colaD elem ---> colaD
+    encolarD_izq:       colaD elem ---> colaD
+    primeroD:           colaD      ---> elem
+    ultimoD:            colaD      ---> elem
+    desencolarD_der:    colaD      ---> colaD
+    desencolarD_izq:    colaD      ---> colaD
+    es_colaDVacia:      colaD      ---> bool 
+
+variables 
+    c: colaD
+    e, f: elem
+
+    encolarD_izq(colaD_vacia, e) = encolarD_izq(e, colaD_vacia)
+    
+    encolarD_izq(encolarD_der(c,f), e) = encolarD_der(encolarD_izq(e,c), f)
+    
+    desencolarD_der(colaD_vacia) = error 
+    
+    desencolarD_der(encolarD_der(colaD_vacia,e)) = colaD_vacia 
+    
+    desencolarD_der(encolarD_der(c,e)) = c
+    
+    desencolarD_der(encolarD_der(c,e)) = encolarD_der(desencolarD_der(c),e) <= es_colaDVacia(c) = falso
+
+    ultimoD(colaD_vacia) = error 
+
+    ultimoD(encolarD_der(c,e)) = e
+    
+    desencolarD_izq(colaD_vacia) = error 
+
+    desencolarD_izq(encolarD_der(c,e)) = colaD_vacia <= es_colaDVacia(c)
+
+    desencolarD_izq(encolarD_der(c,e)) = encolarD_der(desencolarD_izq(c),e)
+    
+    primeroD(colaD_vacia) = error  
+
+    primeroD(encolarD_der(colaD_vacia,e)) = e
+
+    primeroD(encolarD_der(c,e)) = primeroD(c) <= es_colaDVacia(c) = falso
+
+    es_colaDVacia(colaD_vacia) = cierto 
+
+    es_colaDVacia(encolarD_der(c,e)) = falso
+
+    es_colaDVacia(encolarD_izq(c,e)) = falso 
