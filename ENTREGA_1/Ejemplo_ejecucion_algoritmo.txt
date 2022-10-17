@@ -1,0 +1,71 @@
+Ejemplo de ejecución del algoritmo: 
+
+5+((1+2)*4)-3
+NPI: 5 1 2 + 4 * 3 + 3 - 
+
+ALGORITMO: 
+Si hay un número pasa directo
+( y +, -, *, / -> se aplica 
+Al apilar comprobamos si debajo tiene un operador con precedencia mayor, en tal caso se sacan y se apila el resultado 
+ ) -> Sale todo. El resultado final quedará como único elementoev de la pila 
+
+
+ACCION: numero -> apilar
+5]
+]
+]
+-----------------------
+ACCION: No hay operadores por lo que no se puede hacer nada más que apilar
+5]
++]
+-----------------------
+ACCION: apilamos parentesis abierto
+5]
+(, +]
+-----------------------
+ACCION: apilamos parentesis abierto 
+5]
+(, (, +]
+------------------------
+ACCION: numero -> apilar
+1, 5]
+(, (, +]
+-----------------------
+ACCION: hay operadores y pero el primero es ( por lo que apilamos
+1, 5]
++, (, (, +]
+-----------------------
+ACCION: numero -> apilar
+2, 1, 5]
++, (, (, +]
+-----------------------
+ACCION: parentesis cerrado. Operamos y desapilamos hasta encontrar un parentesis abierto
+-----------------------
+7
+3, 5]
+(, +]
+-----------------------
+ACCION: hay operadores pero el primero es ( por lo que apilamos
+3, 5]
+*, (, +]
+-----------------------
+ACCION: numero -> apilar
+4, 3, 5]
+*, (, +]
+-----------------------
+ACCION: parentesis cerrado. Operamos y desapilamos hasta encontrar un parentesis abierto.
+12, 5]
++]
+-----------------------
+ACCION: El - tiene igual precedencia que el +. Operamos y apilamos el resultado
+17]
+-]
+-----------------------
+ACCION: numero -> apilar
+3, 17]
+-]
+------------------------
+Salimos del for, mientras que queden operador tendremos que tener número en la pila. Ya sólo debe quedar operarlo. 
+14]
+]
+lo que queda en la pila de números es el resultado final. 
